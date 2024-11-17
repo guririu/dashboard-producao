@@ -62,3 +62,35 @@ window.onload = function() {
   atualizarGrafico();
 };
 
+/* Estilizando os botões do cabeçalho */
+header nav a {
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+header nav a:hover {
+  background-color: #0056b3;
+}
+
+header nav .btn-adicionar {
+  background-color: #28a745;
+}
+
+header nav .btn-adicionar:hover {
+  background-color: #218838;
+}
+
+header nav .btn-registrar {
+  background-color: #ffc107;
+}
+
+header nav .btn-registrar:hover {
+  background-color: #e0a800;
+}
+
