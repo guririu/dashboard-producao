@@ -1,52 +1,72 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registrar Produção</title>
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Produção</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <header>
+        <h1>Registrar Produção</h1>
+        <nav>
+            <a href="index.html">Página Inicial</a>
+            <a href="adicionar.html">Adicionar Produto</a>
+            <a href="produtos-registrados.html">Produtos Registrados</a>
+            <a href="estoque.html">Acompanhamento de Estoque</a>
+        </nav>
+    </header>
 
-  <!-- Cabeçalho -->
-  <header>
-    <h1>Registrar Produção</h1>
-    <nav>
-      <a href="adicionar.html" class="btn-adicionar">Adicionar Produtos</a>
-      <a href="index.html" class="btn-dashboard">Voltar ao Dashboard</a>
-    </nav>
-  </header>
+    <!-- Formulário para Registrar Produção -->
+    <div class="registro-producao">
+        <h2>Registrar Produção</h2>
+        <form id="form-producao" onsubmit="salvarProducao(); return false;">
+            <div class="form-group">
+                <label for="produto">Produto</label>
+                <input type="text" id="produto" required>
+            </div>
+            <div class="form-group">
+                <label for="quantidade">Quantidade Produzida</label>
+                <input type="number" id="quantidade" required>
+            </div>
+            <div class="form-group">
+                <label for="data">Data de Produção</label>
+                <input type="date" id="data" required>
+            </div>
+            <button type="submit">Registrar Produção</button>
+        </form>
+    </div>
 
-  <!-- Formulário de Registro de Produção -->
-  <section class="form-section">
-    <h2>Registrar Produção</h2>
-    <form id="form-producao">
-      <div class="form-group">
-        <label for="data">Data:</label>
-        <input type="date" id="data" name="data" required>
-      </div>
-      <div class="form-group">
-        <label for="produto">Produto:</label>
-        <select id="produto" name="produto" required>
-          <!-- Produtos serão carregados aqui -->
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="lote">Lote:</label>
-        <input type="text" id="lote" name="lote" required>
-      </div>
-      <div class="form-group">
-        <label for="fardos">Fardos:</label>
-        <input type="number" id="fardos" name="fardos" required>
-      </div>
-      <div class="form-group">
-        <label for="pacotes">Pacotes:</label>
-        <input type="number" id="pacotes" name="pacotes" required>
-      </div>
-      <button type="submit">Registrar Produção</button>
-    </form>
-  </section>
+    <script>
+        // Função para salvar a produção no localStorage
+        function salvarProducao() {
+            // Coletar os dados do formulário
+            const nomeProduto = document.getElementById("produto").value;
+            const quantidade = document.getElementById("quantidade").value;
+            const data = document.getElementById("data").value;
 
-  <script src="js/registro.js"></script>
+            // Criar um objeto de produção
+            const producao = {
+                nome: nomeProduto,
+                quantidade: parseInt(quantidade),  // Garantir que a quantidade seja um número
+                data: data
+            };
+
+            // Obter produções já armazenadas no localStorage ou criar um array vazio se não houver
+            const producoes = JSON.parse(localStorage.getItem("producao")) || [];
+
+            // Adicionar a nova produção ao array
+            producoes.push(producao);
+
+            // Salvar o array de produções de volta no localStorage
+            localStorage.setItem("producao", JSON.stringify(producoes));
+
+            // Limpar o formulário após o envio
+            document.getElementById("form-producao").reset();
+
+            // Exibir uma mensagem de sucesso
+            alert("Produção registrada com sucesso!");
+        }
+    </script>
 </body>
 </html>
