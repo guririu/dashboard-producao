@@ -39,7 +39,7 @@ h1 {
   color: #007bff;
 }
 
-/* Estilo para o cabeçalho */
+/* Estilizando o cabeçalho */
 header {
   background-color: #333;
   color: white;
@@ -80,7 +80,7 @@ nav a:hover {
   background-color: #0056b3;
 }
 
-/* Estilo para o formulário */
+/* Estilizando o formulário */
 .form-section {
   margin: 40px auto;
   max-width: 800px;
@@ -150,26 +150,4 @@ table th, table td {
 table th {
   background-color: #007bff;
   color: white;
-}
-
-button.editar, button.excluir {
-  background-color: #ffc107;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  font-size: 14px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button.editar:hover {
-  background-color: #e0a800;
-}
-
-button.excluir {
-  background-color: #dc3545;
-}
-
-button.excluir:hover {
-  background-color: #c82333;
 }
