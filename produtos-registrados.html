@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos Registrados</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Produtos Registrados</h1>
+        <nav>
+            <a href="index.html">Página Inicial</a>
+            <a href="adicionar.html">Adicionar Produto</a>
+            <a href="registro.html">Registrar Produção</a>
+        </nav>
+    </header>
+
+    <div class="produtos-lista">
+        <h2>Lista de Produtos</h2>
+        <ul id="lista-produtos">
+            <!-- Lista de produtos será carregada aqui -->
+        </ul>
+    </div>
+
+    <script>
+        // Função para carregar produtos armazenados no localStorage
+        function carregarProdutos() {
+            const produtos = JSON.parse(localStorage.getItem("produtos")) || [];
+            const listaProdutos = document.getElementById("lista-produtos");
+            listaProdutos.innerHTML = "";  // Limpa a lista
+
+            produtos.forEach(produto => {
+                const item = document.createElement("li");
+                item.innerHTML = `
+                    <span class="nome-produto">${produto.nome}</span>
+                    <span>Preço: R$ ${produto.preco}</span>
+                    <span>Custo: R$ ${produto.custo}</span>
+                `;
+                listaProdutos.appendChild(item);
+            });
+        }
+
+        // Carregar os produtos ao carregar a página
+        window.onload = carregarProdutos;
+    </script>
+</body>
+</html>
