@@ -10,39 +10,55 @@ document.getElementById("total-produzido").querySelector("p").textContent = `${d
 document.getElementById("media-produzida").querySelector("p").textContent = `${dados.mediaProduzida} kg/dia`;
 document.getElementById("rentabilidade").querySelector("p").textContent = `${(dados.rentabilidade * 100).toFixed(2)}%`;
 
-// Dados fictícios para o gráfico
-const dias = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom']; // Dias da semana
-const producao = [200, 300, 150, 400, 250, 350, 500]; // Produção por dia
+// Função para obter dados do localStorage
+function obterDadosProducao() {
+  return JSON.parse(localStorage.getItem('producao')) || [];
+}
 
-// Configuração do gráfico
-const ctx = document.getElementById('graficoProducao').getContext('2d');
-new Chart(ctx, {
-  type: 'line', // Tipo do gráfico
-  data: {
-    labels: dias, // Eixo X
-    datasets: [{
-      label: 'Produção (kg)',
-      data: producao, // Valores no eixo Y
-      borderColor: 'rgba(75, 192, 192, 1)',
-      backgroundColor: 'rgba(75, 192, 192, 0.2)',
-      borderWidth: 2,
-      tension: 0.3 // Curvatura da linha
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top'
-      },
-      tooltip: {
-        enabled: true
-      }
+// Função para gerar os dados do gráfico
+function atualizarGrafico() {
+  const producao = obterDadosProducao();
+
+  // Extrai os dias e as quantidades produzidas dos dados
+  const dias = producao.map(item => item.data);
+  const quantidades = producao.map(item => item.quantidade);
+
+  // Atualiza o gráfico com os novos dados
+  const ctx = document.getElementById('graficoProducao').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: dias,
+      datasets: [{
+        label: 'Produção (kg)',
+        data: quantidades,
+        borderColor: 'rgba(75, 192, 192, 1)',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderWidth: 2,
+        tension: 0.3,
+      }]
     },
-    scales: {
-      y: {
-        beginAtZero: true
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top'
+        },
+        tooltip: {
+          enabled: true
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true
+        }
       }
     }
-  }
-});
+  });
+}
+
+// Chama a função para atualizar o gráfico quando a página carregar
+window.onload = function() {
+  atualizarGrafico();
+};
+
