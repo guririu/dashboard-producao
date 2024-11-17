@@ -11,6 +11,10 @@ body {
   background-color: #f4f4f9;
   color: #333;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
 }
 
 /* Cabeçalho */
@@ -18,11 +22,16 @@ header {
   background-color: #2d3b45;
   color: #fff;
   padding: 20px;
+  width: 100%;
   text-align: center;
 }
 
 header h1 {
   font-size: 2rem;
+}
+
+header nav {
+  margin-top: 10px;
 }
 
 header nav a {
@@ -39,17 +48,20 @@ header nav a:hover {
   background-color: #45a049;
 }
 
-/* Estilo do Formulário */
+/* Formulário para Adicionar Produtos */
 .form-section {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin-top: 30px;
+  width: 100%;
+  max-width: 600px;
 }
 
 .form-section h2 {
   margin-bottom: 20px;
+  font-size: 1.6rem;
 }
 
 .form-group {
@@ -85,9 +97,11 @@ button:hover {
   background-color: #45a049;
 }
 
-/* Estilo da Lista de Produtos */
+/* Lista de Produtos Cadastrados */
 .produtos-lista {
   margin-top: 30px;
+  width: 100%;
+  max-width: 800px;
 }
 
 .produtos-lista h2 {
@@ -111,9 +125,10 @@ button:hover {
   align-items: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   font-size: 1rem;
+  color: #333;
 }
 
-/* Ajuste de texto - Maior espaço para o nome do produto */
+/* Nome do Produto - Maior espaço */
 #lista-produtos li span.nome-produto {
   flex-grow: 2;  /* Dá mais espaço para o nome do produto */
   color: #333;
@@ -152,9 +167,70 @@ button:hover {
   opacity: 0.8;
 }
 
+/* Formulário de Registro de Produção */
+.registro-producao {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 30px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.registro-producao h2 {
+  margin-bottom: 20px;
+}
+
+.registro-producao .form-group {
+  margin-bottom: 15px;
+}
+
+.registro-producao .form-group label {
+  display: block;
+  font-weight: bold;
+}
+
+.registro-producao .form-group input,
+.registro-producao .form-group select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.registro-producao button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.registro-producao button:hover {
+  background-color: #45a049;
+}
+
+/* Gráfico */
+#grafico {
+  margin-top: 30px;
+  width: 100%;
+  max-width: 800px;
+  height: 400px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
-  .form-section {
+  .form-section,
+  .registro-producao {
     padding: 15px;
   }
 
@@ -165,5 +241,13 @@ button:hover {
 
   button {
     padding: 8px;
+  }
+
+  header h1 {
+    font-size: 1.6rem;
+  }
+
+  header nav a {
+    padding: 6px 12px;
   }
 }
