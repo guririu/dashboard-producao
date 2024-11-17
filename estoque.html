@@ -12,6 +12,7 @@
         <nav>
             <a href="index.html">Página Inicial</a>
             <a href="adicionar.html">Adicionar Produto</a>
+            <a href="produtos-registrados.html">Produtos Registrados</a>
             <a href="registro.html">Registrar Produção</a>
         </nav>
     </header>
@@ -19,16 +20,17 @@
     <div class="estoque-lista">
         <h2>Estoque de Produtos</h2>
         <ul id="lista-estoque">
-            <!-- Lista de produtos com estoque será carregada aqui -->
+            <!-- Lista de estoque será carregada aqui -->
         </ul>
     </div>
 
     <script>
         // Função para carregar o estoque dos produtos
         function carregarEstoque() {
+            // Recuperar a lista de produções registradas
             const producao = JSON.parse(localStorage.getItem("producao")) || [];
             const listaEstoque = document.getElementById("lista-estoque");
-            listaEstoque.innerHTML = "";  // Limpa a lista
+            listaEstoque.innerHTML = "";  // Limpar a lista
 
             producao.forEach(item => {
                 const produto = item.produto;
