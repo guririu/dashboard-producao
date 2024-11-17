@@ -39,7 +39,7 @@ h1 {
   color: #007bff;
 }
 
-/* Estilizando o cabeçalho */
+/* Estilo para o cabeçalho */
 header {
   background-color: #333;
   color: white;
@@ -67,7 +67,7 @@ nav {
 }
 
 nav a {
-  background-color: #28a745;
+  background-color: #007bff;
   color: white;
   text-decoration: none;
   padding: 10px 20px;
@@ -77,6 +77,99 @@ nav a {
 }
 
 nav a:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo para o formulário */
+.form-section {
+  margin: 40px auto;
+  max-width: 800px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
+
+.form-section h2 {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+}
+
+button:hover {
   background-color: #218838;
 }
 
+/* Estilo para a lista de produtos */
+.lista-produtos {
+  margin: 40px auto;
+  max-width: 1200px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #007bff;
+  color: white;
+}
+
+button.editar, button.excluir {
+  background-color: #ffc107;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button.editar:hover {
+  background-color: #e0a800;
+}
+
+button.excluir {
+  background-color: #dc3545;
+}
+
+button.excluir:hover {
+  background-color: #c82333;
+}
