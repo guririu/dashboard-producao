@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Inicial</title>
+    <title>Página Inicial - Dashboard de Produção</title>
     <link rel="stylesheet" href="styles.css">
     <!-- Incluir Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -42,7 +42,7 @@
         <canvas id="productionChart"></canvas>
     </div>
 
-    <!-- Botões para navegação -->
+    <!-- Botões de navegação -->
     <div class="action-buttons">
         <button onclick="window.location.href='adicionar.html'">Adicionar Produto</button>
         <button onclick="window.location.href='registro.html'">Registrar Produção</button>
@@ -100,4 +100,20 @@
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1
                     }]
-   
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // Atualizar o dashboard e o gráfico ao carregar a página
+        window.onload = atualizarDashboard;
+    </script>
+</body>
+</html>
