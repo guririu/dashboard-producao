@@ -38,3 +38,45 @@ h1 {
   font-size: 1.5em;
   color: #007bff;
 }
+
+/* Estilizando o cabeçalho */
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+header h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav a {
+  background-color: #28a745;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #218838;
+}
+
