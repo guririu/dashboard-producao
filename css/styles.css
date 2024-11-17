@@ -48,6 +48,68 @@ header nav a:hover {
   background-color: #45a049;
 }
 
+/* Dashboard */
+.dashboard {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.dashboard-item {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  max-width: 300px;
+  margin: 10px;
+}
+
+.dashboard-item h2 {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.dashboard-item p {
+  font-size: 1.5em;
+  color: #007bff;
+}
+
+/* Cards de Produto */
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  max-width: 300px;
+  margin: 10px;
+}
+
+.card h2 {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.card p {
+  font-size: 1.5em;
+  color: #007bff;
+}
+
 /* Formulário para Adicionar Produtos */
 .form-section {
   background-color: #fff;
