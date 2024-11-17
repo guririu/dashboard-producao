@@ -31,6 +31,11 @@
                 <input type="number" id="peso" step="0.01" required>
             </div>
 
+            <div class="form-group">
+                <label for="preco">Preço por Kg</label>
+                <input type="number" id="preco" step="0.01" required>
+            </div>
+
             <button type="submit">Adicionar Produto</button>
         </form>
     </div>
@@ -42,6 +47,7 @@
                 <tr>
                     <th>Nome do Produto</th>
                     <th>Peso do Pacote</th>
+                    <th>Preço por Kg</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -53,9 +59,9 @@
 
     <script>
         // Função para salvar o produto no localStorage
-        function salvarProduto(nome, peso) {
+        function salvarProduto(nome, peso, preco) {
             const produtos = JSON.parse(localStorage.getItem("produtos")) || [];
-            produtos.push({ nome, peso });
+            produtos.push({ nome, peso, preco });
             localStorage.setItem("produtos", JSON.stringify(produtos));
         }
 
@@ -70,7 +76,8 @@
                 const row = tabelaProdutos.insertRow();
                 row.insertCell(0).textContent = produto.nome;
                 row.insertCell(1).textContent = produto.peso;
-                const acoesCell = row.insertCell(2);
+                row.insertCell(2).textContent = produto.preco.toFixed(2);
+                const acoesCell = row.insertCell(3);
                 
                 // Botão Editar
                 const editarBtn = document.createElement('button');
@@ -95,6 +102,7 @@
 
             document.getElementById('nome').value = produto.nome;
             document.getElementById('peso').value = produto.peso;
+            document.getElementById('preco').value = produto.preco;
 
             // Substitui o botão de adicionar para um botão de salvar alterações
             const form = document.getElementById('form-produto');
@@ -102,6 +110,7 @@
                 event.preventDefault();
                 produto.nome = document.getElementById('nome').value;
                 produto.peso = document.getElementById('peso').value;
+                produto.preco = document.getElementById('preco').value;
 
                 produtos[index] = produto;
                 localStorage.setItem("produtos", JSON.stringify(produtos));
@@ -127,13 +136,14 @@
 
             const nome = document.getElementById('nome').value;
             const peso = document.getElementById('peso').value;
+            const preco = document.getElementById('preco').value;
 
-            if (!nome || !peso) {
+            if (!nome || !peso || !preco) {
                 alert("Preencha todos os campos.");
                 return;
             }
 
-            salvarProduto(nome, peso);
+            salvarProduto(nome, peso, preco);
 
             alert("Produto adicionado com sucesso!");
             carregarProdutos(); // Atualiza a lista de produtos
