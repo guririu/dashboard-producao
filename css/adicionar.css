@@ -49,7 +49,7 @@ header nav a:hover {
   background-color: #45a049;
 }
 
-/* Formulário de Adicionar Produto */
+/* Formulário de Cadastro de Produto */
 .form-section {
   background-color: #fff;
   border-radius: 8px;
@@ -62,11 +62,9 @@ header nav a:hover {
 
 .form-section h2 {
   margin-bottom: 20px;
-  font-size: 1.6rem;
   text-align: center;
 }
 
-/* Grupos de campos do formulário */
 .form-group {
   margin-bottom: 15px;
 }
@@ -74,11 +72,9 @@ header nav a:hover {
 .form-group label {
   display: block;
   font-weight: bold;
-  margin-bottom: 5px;
 }
 
-.form-group input,
-.form-group select {
+.form-group input {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
@@ -102,26 +98,67 @@ button:hover {
   background-color: #45a049;
 }
 
-/* Estilo para botões de navegação */
-.action-buttons {
+/* Tabela de Produtos Cadastrados */
+.produtos-lista {
   margin-top: 30px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+  width: 100%;
+  max-width: 800px;
 }
 
-.action-buttons button {
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
+.produtos-lista h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#tabela-produtos {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#tabela-produtos th,
+#tabela-produtos td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+#tabela-produtos th {
+  background-color: #f4f4f9;
+}
+
+#tabela-produtos tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Botões Editar e Excluir */
+#tabela-produtos button {
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.3s;
+  margin: 0 5px;
+}
+
+#tabela-produtos button.editar {
   background-color: #4CAF50;
   color: white;
-  border: none;
-  cursor: pointer;
 }
 
-.action-buttons button:hover {
-  background-color: #45a049;
+#tabela-produtos button.editar:hover {
+  opacity: 0.8;
+}
+
+#tabela-produtos button.excluir {
+  background-color: #e74c3c;
+  color: white;
+}
+
+#tabela-produtos button.excluir:hover {
+  opacity: 0.8;
 }
 
 /* Responsividade */
@@ -130,20 +167,12 @@ button:hover {
     padding: 15px;
   }
 
-  .form-group input,
-  .form-group select {
+  #tabela-produtos th, #tabela-produtos td {
+    font-size: 14px;
     padding: 8px;
   }
 
   button {
     padding: 8px;
-  }
-
-  header h1 {
-    font-size: 1.6rem;
-  }
-
-  header nav a {
-    padding: 6px 12px;
   }
 }
