@@ -8,51 +8,33 @@
 </head>
 <body>
 
-  <!-- Cabeçalho com botão para voltar -->
+  <!-- Cabeçalho -->
   <header>
-    <div class="header-container">
-      <h1>Adicionar Produtos</h1>
-      <nav>
-        <a href="index.html" class="btn-dashboard">Voltar ao Dashboard</a>
-      </nav>
-    </div>
+    <h1>Adicionar Produtos</h1>
+    <nav>
+      <a href="index.html" class="btn-dashboard">Voltar ao Dashboard</a>
+      <a href="registro.html" class="btn-registrar">Registrar Produção</a>
+    </nav>
   </header>
 
-  <!-- Formulário para adicionar produtos -->
+  <!-- Formulário de Adição de Produto -->
   <section class="form-section">
     <h2>Cadastrar Novo Produto</h2>
-    <form id="form-produto">
+    <form id="form-adicionar-produto">
       <div class="form-group">
         <label for="nome">Nome do Produto:</label>
         <input type="text" id="nome" name="nome" required>
       </div>
       <div class="form-group">
-        <label for="preco">Preço Unitário (R$):</label>
-        <input type="number" id="preco" name="preco" step="0.01" required>
+        <label for="preco">Preço Unitário:</label>
+        <input type="number" id="preco" name="preco" required>
       </div>
       <div class="form-group">
-        <label for="custo">Custo de Produção (R$):</label>
-        <input type="number" id="custo" name="custo" step="0.01" required>
+        <label for="custo">Custo de Produção:</label>
+        <input type="number" id="custo" name="custo" required>
       </div>
       <button type="submit">Adicionar Produto</button>
     </form>
-  </section>
-
-  <!-- Lista de Produtos -->
-  <section class="lista-produtos">
-    <h2>Produtos Cadastrados</h2>
-    <table id="tabela-produtos">
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Preço Unitário</th>
-          <th>Custo de Produção</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- A lista de produtos será gerada aqui -->
-      </tbody>
-    </table>
   </section>
 
   <script src="js/adicionar.js"></script>
