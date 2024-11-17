@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Produção</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="registro.css">
 </head>
 <body>
     <header>
@@ -12,60 +12,129 @@
         <nav>
             <a href="index.html">Página Inicial</a>
             <a href="adicionar.html">Adicionar Produto</a>
+            <a href="registro.html">Registrar Produção</a>
             <a href="produtos-registrados.html">Produtos Registrados</a>
             <a href="estoque.html">Acompanhamento de Estoque</a>
         </nav>
     </header>
 
-    <!-- Formulário para Registrar Produção -->
     <div class="registro-producao">
-        <h2>Registrar Produção</h2>
-        <form id="form-producao" onsubmit="salvarProducao(); return false;">
-            <div class="form-group">
-                <label for="produto">Produto</label>
-                <input type="text" id="produto" required>
-            </div>
-            <div class="form-group">
-                <label for="quantidade">Quantidade Produzida</label>
-                <input type="number" id="quantidade" required>
-            </div>
-            <div class="form-group">
-                <label for="data">Data de Produção</label>
-                <input type="date" id="data" required>
-            </div>
-            <button type="submit">Registrar Produção</button>
-        </form>
+        <h2>Registrar Produção de Produto</h2>
+        <div class="form-group">
+            <label for="produto">Produto</label>
+            <select id="produto">
+                <!-- Os produtos cadastrados aparecerão aqui -->
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="data">Data de Produção</label>
+            <input type="date" id="data">
+        </div>
+
+        <div class="form-group">
+            <label for="lote">Lote</label>
+            <input type="text" id="lote">
+        </div>
+
+        <div class="form-group">
+            <label for="fardos">Quantidade de Fardos</label>
+            <input type="number" id="fardos">
+        </div>
+
+        <div class="form-group">
+            <label for="pacotes">Quantidade de Pacotes</label>
+            <input type="number" id="pacotes">
+        </div>
+
+        <button onclick="registrarProducao()">Registrar Produção</button>
+    </div>
+
+    <div class="relatorios">
+        <h3>Relatório de Produção</h3>
+        <table id="relatorio">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Data</th>
+                    <th>Lote</th>
+                    <th>Fardos</th>
+                    <th>Pacotes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Os registros de produção serão listados aqui -->
+            </tbody>
+        </table>
     </div>
 
     <script>
-        // Função para salvar a produção no localStorage
-        function salvarProducao() {
-            // Coletar os dados do formulário
-            const nomeProduto = document.getElementById("produto").value;
-            const quantidade = document.getElementById("quantidade").value;
-            const data = document.getElementById("data").value;
+        // Função para carregar os produtos adicionados
+        function carregarProdutos() {
+            const produtos = JSON.parse(localStorage.getItem("produtos")) || [];
+            const selectProduto = document.getElementById('produto');
 
-            // Criar um objeto de produção
+            produtos.forEach(produto => {
+                const option = document.createElement('option');
+                option.value = produto.nome;
+                option.textContent = produto.nome;
+                selectProduto.appendChild(option);
+            });
+        }
+
+        // Função para registrar a produção
+        function registrarProducao() {
+            const produto = document.getElementById('produto').value;
+            const data = document.getElementById('data').value;
+            const lote = document.getElementById('lote').value;
+            const fardos = document.getElementById('fardos').value;
+            const pacotes = document.getElementById('pacotes').value;
+
+            if (!produto || !data || !lote || !fardos || !pacotes) {
+                alert("Preencha todos os campos.");
+                return;
+            }
+
             const producao = {
-                nome: nomeProduto,
-                quantidade: parseInt(quantidade),  // Garantir que a quantidade seja um número
-                data: data
+                produto,
+                data,
+                lote,
+                fardos,
+                pacotes
             };
 
-            // Obter produções já armazenadas no localStorage ou criar um array vazio se não houver
-            const producoes = JSON.parse(localStorage.getItem("producao")) || [];
-
-            // Adicionar a nova produção ao array
+            // Salvar produção no LocalStorage
+            let producoes = JSON.parse(localStorage.getItem("producoes")) || [];
             producoes.push(producao);
+            localStorage.setItem("producoes", JSON.stringify(producoes));
 
-            // Salvar o array de produções de volta no localStorage
-            localStorage.setItem("producao", JSON.stringify(producoes));
-
-            // Limpar o formulário após o envio
-            document.getElementById("form-producao").reset();
-
-            // Exibir uma mensagem de sucesso
             alert("Produção registrada com sucesso!");
+
+            // Atualizar a tabela de relatórios
+            carregarRelatorios();
+        }
+
+        // Função para carregar os relatórios
+        function carregarRelatorios() {
+            const relatorioTable = document.getElementById('relatorio').getElementsByTagName('tbody')[0];
+            relatorioTable.innerHTML = ''; // Limpar a tabela antes de preencher
+
+            const producoes = JSON.parse(localStorage.getItem("producoes")) || [];
+
+            producoes.forEach(producao => {
+                const row = relatorioTable.insertRow();
+                row.insertCell(0).textContent = producao.produto;
+                row.insertCell(1).textContent = producao.data;
+                row.insertCell(2).textContent = producao.lote;
+                row.insertCell(3).textContent = producao.fardos;
+                row.insertCell(4).textContent = producao.pacotes;
+            });
+        }
+
+        // Carregar produtos e relatórios ao carregar a página
+        window.onload = function() {
+            carregarProdutos();
+            carregarRelatorios();
         }
     </script>
 </body>
