@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard de Produção</title>
-  <link rel="stylesheet" href="css/styles.css"> <!-- Link para o arquivo CSS -->
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <h1>Dashboard de Produção</h1>
@@ -22,6 +22,11 @@
       <p>0%</p>
     </div>
   </div>
-  <script src="js/script.js"></script> <!-- Link para o arquivo JS -->
+  <!-- Adicione uma área para o gráfico -->
+  <div style="width: 80%; margin: 40px auto;">
+    <canvas id="graficoProducao"></canvas>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
