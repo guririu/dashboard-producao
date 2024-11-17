@@ -1,50 +1,29 @@
-// Função para salvar os produtos no localStorage
-function salvarProduto(produto) {
-  const produtos = JSON.parse(localStorage.getItem('produtos')) || [];
-  produtos.push(produto);
-  localStorage.setItem('produtos', JSON.stringify(produtos));
-}
+document.getElementById('form-adicionar-produto').addEventListener('submit', function(e) {
+  e.preventDefault();
 
-// Função para exibir a lista de produtos
-function exibirProdutos() {
-  const produtos = JSON.parse(localStorage.getItem('produtos')) || [];
-  const tabelaProdutos = document.querySelector('#tabela-produtos tbody');
-  tabelaProdutos.innerHTML = ''; // Limpa a tabela antes de adicionar os produtos
-
-  produtos.forEach(produto => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${produto.nome}</td>
-      <td>R$ ${produto.preco.toFixed(2)}</td>
-      <td>R$ ${produto.custo.toFixed(2)}</td>
-    `;
-    tabelaProdutos.appendChild(tr);
-  });
-}
-
-// Função chamada ao enviar o formulário
-document.getElementById('form-produto').addEventListener('submit', function(event) {
-  event.preventDefault(); // Evita o envio do formulário
-
+  // Pegando os dados do formulário
   const nome = document.getElementById('nome').value;
-  const preco = parseFloat(document.getElementById('preco').value);
-  const custo = parseFloat(document.getElementById('custo').value);
+  const preco = document.getElementById('preco').value;
+  const custo = document.getElementById('custo').value;
 
-  // Salva o novo produto
-  salvarProduto({ nome, preco, custo });
+  // Criando o objeto de produto
+  const produto = {
+    nome: nome,
+    preco: parseFloat(preco),
+    custo: parseFloat(custo)
+  };
 
-  // Limpa os campos do formulário
-  document.getElementById('nome').value = '';
-  document.getElementById('preco').value = '';
-  document.getElementById('custo').value = '';
+  // Obtendo os produtos já cadastrados no LocalStorage, ou criando um array vazio
+  let produtos = JSON.parse(localStorage.getItem('produtos')) || [];
 
-  // Atualiza a lista de produtos
-  exibirProdutos();
+  // Adicionando o novo produto ao array
+  produtos.push(produto);
+
+  // Salvando os produtos atualizados no LocalStorage
+  localStorage.setItem('produtos', JSON.stringify(produtos));
+
+  // Limpando o formulário após o envio
+  document.getElementById('form-adicionar-produto').reset();
 
   alert('Produto adicionado com sucesso!');
 });
-
-// Exibir os produtos quando a página carregar
-window.onload = function() {
-  exibirProdutos();
-};
