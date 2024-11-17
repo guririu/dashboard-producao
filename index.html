@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Inicial</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Incluir Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
@@ -35,6 +37,11 @@
         </div>
     </div>
 
+    <!-- Gráfico de Produção -->
+    <div class="chart-container">
+        <canvas id="productionChart"></canvas>
+    </div>
+
     <!-- Botões para navegação -->
     <div class="action-buttons">
         <button onclick="window.location.href='adicionar.html'">Adicionar Produto</button>
@@ -42,17 +49,25 @@
     </div>
 
     <script>
-        // Exemplo de cálculo para total produzido, média e rentabilidade
+        // Função para atualizar o dashboard e o gráfico
         function atualizarDashboard() {
             const producao = JSON.parse(localStorage.getItem("producao")) || [];
 
             let totalProduzido = 0;
             let totalDias = 0;
+            let producaoPorDia = {};
 
             producao.forEach(item => {
                 totalProduzido += item.quantidade;
                 const data = new Date(item.data);
-                totalDias = Math.max(totalDias, data.getDate());  // Pegando o total de dias registrados
+                const dia = data.getDate();
+
+                // Somando a produção por dia
+                if (!producaoPorDia[dia]) {
+                    producaoPorDia[dia] = 0;
+                }
+                producaoPorDia[dia] += item.quantidade;
+                totalDias = Math.max(totalDias, dia);
             });
 
             const mediaProducao = totalDias > 0 ? (totalProduzido / totalDias).toFixed(2) : 0;
@@ -62,10 +77,27 @@
             document.getElementById("total-produzido").innerText = `${totalProduzido} Kg`;
             document.getElementById("media-producao").innerText = `${mediaProducao} Kg/dia`;
             document.getElementById("rentabilidade").innerText = `R$ ${rentabilidade.toFixed(2)}`;
+
+            // Gerar gráfico com os dados da produção
+            gerarGrafico(producaoPorDia);
         }
 
-        // Atualizar o dashboard ao carregar a página
-        window.onload = atualizarDashboard;
-    </script>
-</body>
-</html>
+        // Função para gerar o gráfico com os dados
+        function gerarGrafico(producaoPorDia) {
+            const ctx = document.getElementById('productionChart').getContext('2d');
+            const dias = Object.keys(producaoPorDia);
+            const quantidades = dias.map(dia => producaoPorDia[dia]);
+
+            // Gerando o gráfico de barras
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: dias,
+                    datasets: [{
+                        label: 'Produção por Dia (Kg)',
+                        data: quantidades,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+   
