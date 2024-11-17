@@ -121,21 +121,21 @@ button:hover {
 #tabela-produtos td {
   padding: 12px;
   border: 1px solid #ddd;
-  text-align: left;
+  text-align: center;
 }
 
 #tabela-produtos th {
   background-color: #f4f4f9;
+  color: #333;
 }
 
-#tabela-produtos tr:nth-child(even) {
-  background-color: #f9f9f9;
+#tabela-produtos td {
+  background-color: #fff;
 }
 
-/* Botões Editar e Excluir */
 #tabela-produtos button {
-  padding: 6px 12px;
-  font-size: 14px;
+  padding: 5px 8px;
+  font-size: 12px;
   border-radius: 4px;
   cursor: pointer;
   border: none;
