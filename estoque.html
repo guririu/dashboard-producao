@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acompanhamento de Estoque</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Acompanhamento de Estoque</h1>
+        <nav>
+            <a href="index.html">Página Inicial</a>
+            <a href="adicionar.html">Adicionar Produto</a>
+            <a href="registro.html">Registrar Produção</a>
+        </nav>
+    </header>
+
+    <div class="estoque-lista">
+        <h2>Estoque de Produtos</h2>
+        <ul id="lista-estoque">
+            <!-- Lista de produtos com estoque será carregada aqui -->
+        </ul>
+    </div>
+
+    <script>
+        // Função para carregar o estoque dos produtos
+        function carregarEstoque() {
+            const producao = JSON.parse(localStorage.getItem("producao")) || [];
+            const listaEstoque = document.getElementById("lista-estoque");
+            listaEstoque.innerHTML = "";  // Limpa a lista
+
+            producao.forEach(item => {
+                const produto = item.produto;
+                const itemEstoque = document.createElement("li");
+                itemEstoque.innerHTML = `
+                    <span class="nome-produto">${produto.nome}</span>
+                    <span>Quantidade: ${item.quantidade}</span>
+                    <span>Data: ${item.data}</span>
+                `;
+                listaEstoque.appendChild(itemEstoque);
+            });
+        }
+
+        // Carregar o estoque ao carregar a página
+        window.onload = carregarEstoque;
+    </script>
+</body>
+</html>
