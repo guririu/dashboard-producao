@@ -176,14 +176,14 @@ header nav .btn-adicionar:hover {
   background-color: #218838;
 }
 
-/* Reseta o estilo padrão do navegador */
+/* Resetando estilo padrão do navegador */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Estilos para o corpo da página */
+/* Corpo da página */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f9;
@@ -263,7 +263,7 @@ button:hover {
   background-color: #45a049;
 }
 
-/* Estilos para a Lista de Produtos */
+/* Estilo da Lista de Produtos */
 .produtos-lista {
   margin-top: 30px;
 }
@@ -280,7 +280,7 @@ button:hover {
 
 #lista-produtos li {
   background-color: #fff;
-  padding: 10px;
+  padding: 10px 15px;
   margin: 10px 0;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -288,20 +288,23 @@ button:hover {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
 }
 
+/* Ajuste de texto */
 #lista-produtos li span {
-  font-size: 1rem;
+  flex-grow: 1;
   color: #333;
 }
 
 #lista-produtos li button {
-  padding: 5px 10px;
+  padding: 6px 12px;
   font-size: 14px;
-  border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
+  border: none;
   transition: opacity 0.3s;
+  margin-left: 10px;
 }
 
 /* Botões Editar e Excluir */
@@ -321,4 +324,20 @@ button:hover {
 
 #lista-produtos li button.excluir:hover {
   opacity: 0.8;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .form-section {
+    padding: 15px;
+  }
+
+  #lista-produtos li {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+
+  button {
+    padding: 8px;
+  }
 }
