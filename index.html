@@ -1,32 +1,71 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard de Produção</title>
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Dashboard de Produção</h1>
-  <div class="cards">
-    <div class="card" id="total-produzido">
-      <h2>Total Produzido</h2>
-      <p>0 kg</p>
+    <header>
+        <h1>Dashboard de Produção</h1>
+        <nav>
+            <a href="index.html">Página Inicial</a>
+            <a href="adicionar.html">Adicionar Produto</a>
+            <a href="registro.html">Registrar Produção</a>
+            <a href="produtos-registrados.html">Produtos Registrados</a>
+            <a href="estoque.html">Acompanhamento de Estoque</a>
+        </nav>
+    </header>
+
+    <div class="dashboard">
+        <div class="dashboard-item">
+            <h2>Total Produzido em Kg</h2>
+            <p id="total-produzido">0 Kg</p>
+        </div>
+
+        <div class="dashboard-item">
+            <h2>Média de Produção</h2>
+            <p id="media-producao">0 Kg/dia</p>
+        </div>
+
+        <div class="dashboard-item">
+            <h2>Rentabilidade</h2>
+            <p id="rentabilidade">R$ 0,00</p>
+        </div>
     </div>
-    <div class="card" id="media-produzida">
-      <h2>Média Produzida</h2>
-      <p>0 kg/dia</p>
+
+    <!-- Botões para navegação -->
+    <div class="action-buttons">
+        <button onclick="window.location.href='adicionar.html'">Adicionar Produto</button>
+        <button onclick="window.location.href='registro.html'">Registrar Produção</button>
     </div>
-    <div class="card" id="rentabilidade">
-      <h2>Rentabilidade</h2>
-      <p>0%</p>
-    </div>
-  </div>
-  <!-- Adicione uma área para o gráfico -->
-  <div style="width: 80%; margin: 40px auto;">
-    <canvas id="graficoProducao"></canvas>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="js/script.js"></script>
+
+    <script>
+        // Exemplo de cálculo para total produzido, média e rentabilidade
+        function atualizarDashboard() {
+            const producao = JSON.parse(localStorage.getItem("producao")) || [];
+
+            let totalProduzido = 0;
+            let totalDias = 0;
+
+            producao.forEach(item => {
+                totalProduzido += item.quantidade;
+                const data = new Date(item.data);
+                totalDias = Math.max(totalDias, data.getDate());  // Pegando o total de dias registrados
+            });
+
+            const mediaProducao = totalDias > 0 ? (totalProduzido / totalDias).toFixed(2) : 0;
+            const rentabilidade = totalProduzido * 10;  // Exemplo de rentabilidade (ajuste conforme sua fórmula)
+
+            // Atualizar as informações no dashboard
+            document.getElementById("total-produzido").innerText = `${totalProduzido} Kg`;
+            document.getElementById("media-producao").innerText = `${mediaProducao} Kg/dia`;
+            document.getElementById("rentabilidade").innerText = `R$ ${rentabilidade.toFixed(2)}`;
+        }
+
+        // Atualizar o dashboard ao carregar a página
+        window.onload = atualizarDashboard;
+    </script>
 </body>
 </html>
