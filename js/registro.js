@@ -13,3 +13,22 @@ window.onload = function() {
     selectProduto.appendChild(option);
   });
 };
+
+// Exemplo para salvar a produção no localStorage
+function salvarProducao() {
+    const nomeProduto = document.getElementById("produto").value;
+    const quantidade = document.getElementById("quantidade").value;
+    const data = document.getElementById("data").value;
+
+    const produto = {
+        nome: nomeProduto,
+        quantidade: quantidade,
+        data: data
+    };
+
+    const producao = JSON.parse(localStorage.getItem("producao")) || [];
+    producao.push(produto);
+    localStorage.setItem("producao", JSON.stringify(producao));
+
+    alert("Produção registrada com sucesso!");
+}
