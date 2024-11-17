@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar Produção</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Cabeçalho com botão para voltar -->
+  <header>
+    <div class="header-container">
+      <h1>Registrar Produção</h1>
+      <nav>
+        <a href="index.html" class="btn-dashboard">Voltar ao Dashboard</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Formulário para registrar produção -->
+  <section class="form-section">
+    <h2>Registrar Produção</h2>
+    <form id="form-producao">
+      <div class="form-group">
+        <label for="data">Data:</label>
+        <input type="date" id="data" name="data" required>
+      </div>
+      <div class="form-group">
+        <label for="produto">Produto:</label>
+        <select id="produto" name="produto" required>
+          <!-- Produtos serão carregados aqui -->
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="lote">Lote:</label>
+        <input type="text" id="lote" name="lote" required>
+      </div>
+      <div class="form-group">
+        <label for="fardos">Fardos:</label>
+        <input type="number" id="fardos" name="fardos" required>
+      </div>
+      <div class="form-group">
+        <label for="pacotes">Pacotes:</label>
+        <input type="number" id="pacotes" name="pacotes" required>
+      </div>
+      <button type="submit">Registrar Produção</button>
+    </form>
+  </section>
+
+  <script src="js/registro.js"></script>
+</body>
+</html>
